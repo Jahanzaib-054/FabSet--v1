@@ -19,6 +19,15 @@ public class User {
         this.phone = phone;
         this.address = address;
     }
+    public User(int id, String name, String password,String email, String address, String phone, Bitmap img) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.image = img;
+    }
     public User(int id, String name, String password,String email) {
         this.id = id;
         this.name = name;
@@ -77,5 +86,14 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+
+    public Bitmap getImage() {
+        return image;
+    }
+
+    public void setImage(Bitmap image) {
+        this.image = image;
     }
 }

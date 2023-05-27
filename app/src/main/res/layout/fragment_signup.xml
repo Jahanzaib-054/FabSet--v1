@@ -39,6 +39,7 @@
             android:paddingHorizontal="8dp"
             android:layout_margin="8dp"
             android:hint="username"
+            android:maxLines="1"
             android:id="@+id/username"/>
         <TextView
             android:layout_width="wrap_content"
@@ -56,6 +57,7 @@
             android:hint="Enter your email address"
             android:paddingHorizontal="8dp"
             android:layout_margin="8dp"
+            android:maxLines="1"
             android:textSize="20sp"
             android:id="@+id/email"/>
         <TextView
@@ -74,6 +76,7 @@
             android:paddingVertical="8dp"
             android:paddingHorizontal="8dp"
             android:hint="password"
+            android:maxLines="1"
             android:layout_margin="8dp"
             android:inputType="textPassword"
             android:id="@+id/password"/>
@@ -94,6 +97,7 @@
             android:layout_margin="8dp"
             android:hint="Enter phone number"
             android:textSize="20sp"
+            android:maxLines="1"
             android:inputType="phone"
             android:id="@+id/phone"/>
         <TextView
@@ -112,6 +116,7 @@
             android:paddingHorizontal="8dp"
             android:layout_margin="8dp"
             android:hint="Enter your address"
+            android:maxLines="1"
             android:textSize="20sp"
             android:id="@+id/address"/>
         <Button

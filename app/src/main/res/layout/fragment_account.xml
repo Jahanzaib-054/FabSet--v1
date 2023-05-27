@@ -52,12 +52,13 @@
             android:src="@drawable/default_avatar"
             android:layout_marginBottom="10dp"
             android:layout_gravity="center"
-            android:background="@color/black"
+            android:background="@drawable/circle_image"
             android:id="@+id/pro_img"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
+            android:scaleType="centerCrop"
             android:text=""
             android:textColor="@color/black"
             android:layout_gravity="center"
@@ -73,7 +74,8 @@
             android:textAlignment="center"
             android:paddingHorizontal="12dp"
             android:layout_marginTop="28dp"
-            android:text="Edit Profile"/>
+            android:text="Edit Profile"
+            android:id="@+id/edit_prof"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

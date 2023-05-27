@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         MainMenu = findViewById(R.id.MainMenu);
+        Intent intent = getIntent();
+        boolean flag = intent.getBooleanExtra("Flag",false);
 
         MainMenu.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -47,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         MainMenu.setSelectedItemId(R.id.nav_home);
+        if (flag){
+            MainMenu.setSelectedItemId(R.id.nav_account);
+        }
     }
     public void loadFrag(Fragment fragment){
         FragmentManager fm = getSupportFragmentManager();

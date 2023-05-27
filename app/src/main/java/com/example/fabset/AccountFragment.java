@@ -20,6 +20,7 @@ public class AccountFragment extends Fragment {
 
     private Button To_Form;
     private Button Logout;
+    private Button Edit_profile;
     private LinearLayout user_layout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,9 +28,9 @@ public class AccountFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_account, container, false);
         To_Form = view.findViewById(R.id.to_form);
-        Context context = getContext();
         user_layout = view.findViewById(R.id.user_account);
         Logout = view.findViewById(R.id.Logout);
+        Edit_profile = view.findViewById(R.id.edit_prof);
         TextView greet = view.findViewById(R.id.greeting);
         TextView email = view.findViewById(R.id.email);
 
@@ -54,17 +55,24 @@ public class AccountFragment extends Fragment {
         To_Form.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, Form.class);
+                Intent intent = new Intent(getActivity(), Form.class);
+                startActivity(intent);
+            }
+        });
+        Edit_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),Edit_Profile.class);
                 startActivity(intent);
             }
         });
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, MainActivity.class);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
                 editor.putBoolean("isLogin", false);
                 editor.commit();
-                Toast.makeText(context, "Logout Successfull", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Logout Successfull", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });

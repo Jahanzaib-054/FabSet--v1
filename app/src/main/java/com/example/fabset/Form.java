@@ -23,6 +23,7 @@ public class Form extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         SharedPreferences SP;
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("Flag",true);
         SP = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         Boolean Flag = SP.getBoolean("isLogin", false);
         if (Flag){
