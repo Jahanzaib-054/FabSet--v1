@@ -41,6 +41,7 @@ public class CategoryFragment extends Fragment {
         dropdownButton3 = view.findViewById(R.id.dropdown_button3);
         dropdownListView3 = view.findViewById(R.id.dropdown_listview3);
 
+
         dropdownButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

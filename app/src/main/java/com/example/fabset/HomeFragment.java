@@ -3,11 +3,16 @@ package com.example.fabset;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.SearchView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +30,7 @@ public class HomeFragment extends Fragment {
     private ViewPager viewPager;
     private RecyclerView recyclerView;
     private ProductAdapter productadapter;
+    EditText qry;
     HorizontalScrollView horizontalScrollView;
     HorizontalScrollView categoryScrollView;
     private int[] images = {R.drawable.img1, R.drawable.img2, R.drawable.img3};
@@ -38,7 +44,6 @@ public class HomeFragment extends Fragment {
             handler.postDelayed(this, 3000);
         }
     };
-
 
     @Nullable
     @Override
@@ -59,11 +64,31 @@ public class HomeFragment extends Fragment {
         horizontalScrollView.setHorizontalScrollBarEnabled(false);
         categoryScrollView = view.findViewById(R.id.Category_cards);
         categoryScrollView.setHorizontalScrollBarEnabled(false);
+        qry = view.findViewById(R.id.search_bar);
+
+        qry.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    performSearch();
+                    return true;
+                }
+                return false;
+            }
+        });
+
 
         handler.postDelayed(runnable, 4000);
 
         return view;
     }
+
+    private void performSearch() {
+        String query = qry.getText().toString();
+        // Perform the search operation based on the query
+        // ...
+    }
+
 
     private List<Product> createProductList() {
         List<Product> productList = new ArrayList<>();

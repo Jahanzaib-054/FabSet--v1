@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_account:
                         loadFrag(new AccountFragment());
                         break;
+                    default:
+                        loadFrag(new HomeFragment());
+                        break;
                 }
                 return true;
             }
@@ -51,4 +54,10 @@ public class MainActivity extends AppCompatActivity {
         ft.replace(R.id.container, fragment);
         ft.commit();
     }
+    @Override
+    public void onBackPressed() {
+        // Leave this method empty to disable the back button
+        // This prevents the activity from navigating back
+    }
+
 }

@@ -12,7 +12,11 @@
         android:layout_height="wrap_content"
         android:text="Categories"
         android:gravity="center"
+        android:background="@color/yellow"
         android:padding="12dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginBottom="40dp"
         android:textSize="33sp"/>
     <Button
         android:id="@+id/dropdown_button1"
@@ -27,6 +31,9 @@
         android:id="@+id/dropdown_listview1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/yellow"
+        android:textAlignment="center"
+        android:padding="2dp"
         android:visibility="gone"/>
 
     <Button
@@ -42,6 +49,9 @@
         android:id="@+id/dropdown_listview2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/yellow"
+        android:textAlignment="center"
+        android:padding="2dp"
         android:visibility="gone"/>
 
     <Button
@@ -57,6 +67,9 @@
         android:id="@+id/dropdown_listview3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/yellow"
+        android:padding="2dp"
+        android:textAlignment="center"
         android:visibility="gone"/>
 
 </LinearLayout>
