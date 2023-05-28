@@ -1,5 +1,6 @@
 package com.example.fabset;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -82,9 +83,9 @@ public class CategoryFragment extends Fragment {
         });
 
         // Example data for the dropdown ListViews
-        String[] dropdownItems1 = {"Shirts", "Pants","T-Shirts", "Trousers", "Shalwar Kameez"};
-        String[] dropdownItems2 = {"Dresses", "Shirts", "Pants" , "Frocks"};
-        String[] dropdownItems3 = {"Dresses", "Shirts", "Pants", "Sleepwear"};
+        String[] dropdownItems1 = {"Shirts", "Pants","T-Shirts"};
+        String[] dropdownItems2 = {"Dresses" , "Frocks"};
+        String[] dropdownItems3 = {"Shirts", "Pants", "Sleepwear"};
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(requireContext(), android.R.layout.simple_selectable_list_item, dropdownItems1);
         dropdownListView1.setAdapter(adapter1);
@@ -99,8 +100,11 @@ public class CategoryFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = (String) parent.getItemAtPosition(position);
+                Intent intent = new Intent(getActivity(), ProductsPage.class);
+                intent.putExtra("category","Male");
+                intent.putExtra("subcategory",selectedItem);
                 Toast.makeText(requireContext(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
-
+                startActivity(intent);
                 // Execute your code here based on the clicked item
                 // ...
             }
@@ -110,7 +114,11 @@ public class CategoryFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = (String) parent.getItemAtPosition(position);
+                Intent intent = new Intent(getActivity(), ProductsPage.class);
+                intent.putExtra("category","Female");
+                intent.putExtra("subcategory",selectedItem);
                 Toast.makeText(requireContext(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
+                startActivity(intent);
 
                 // Execute your code here based on the clicked item
                 // ...
@@ -120,7 +128,11 @@ public class CategoryFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = (String) parent.getItemAtPosition(position);
+                Intent intent = new Intent(getActivity(), ProductsPage.class);
+                intent.putExtra("category","Kids");
+                intent.putExtra("subcategory",selectedItem);
                 Toast.makeText(requireContext(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
+                startActivity(intent);
 
                 // Execute your code here based on the clicked item
                 // ...

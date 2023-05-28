@@ -105,6 +105,31 @@ public class SQLite extends SQLiteOpenHelper {
         cursor.close();
         return productList;
     }
+    public List<Product> SearchCatProducts(String cat, String subcat)
+    {
+        Bitmap imageBitmap = null;
+        List<Product> productList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] selectionArgs = {cat, subcat};
+        Cursor cursor= db.rawQuery("Select * from Product WHERE Category = ? AND Subcategory = ?", selectionArgs);
+        while(cursor.moveToNext()){
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            String price = cursor.getString(2);
+            String category = cursor.getString(3);
+            String subcategory = cursor.getString(4);
+            String description = cursor.getString(5);
+            String tag = cursor.getString(6);
+            String imageBase64 = cursor.getString(7);
+            if (imageBase64 != null){
+                imageBitmap = base64ToBitmap(imageBase64);
+            }
+            Product product = new Product(id, name, price, category, subcategory, description, tag, imageBitmap);
+            productList.add(product);
+        }
+        cursor.close();
+        return productList;
+    }
 
 
     public User SearchUser(String name ,String password)
