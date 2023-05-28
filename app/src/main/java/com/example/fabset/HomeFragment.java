@@ -1,6 +1,9 @@
 package com.example.fabset;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
@@ -13,6 +16,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -53,7 +57,16 @@ public class HomeFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
-        List<Product> productList = createProductList();
+        SharedPreferences SP;
+        SP = getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = SP.edit();
+        SQLite s1 = new SQLite(getContext());
+        if (!SP.getBoolean("before",false)){
+            createProducts(s1);
+            editor.putBoolean("before",true);
+        }
+
+        List<Product> productList = createProductList(s1);
         productadapter = new ProductAdapter(productList);
         recyclerView.setAdapter(productadapter);
 
@@ -77,7 +90,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
         handler.postDelayed(runnable, 4000);
 
         return view;
@@ -88,24 +100,24 @@ public class HomeFragment extends Fragment {
         // Perform the search operation based on the query
         // ...
     }
+    private void createProducts(SQLite s1){
+        long r = 0;
+            for (int i=0;i<4;i++){
+                r = s1.SaveProductData("productA","200","Male", "Shirt", "No details","New", BitmapFactory.decodeResource(getResources(), R.drawable.shirt) );
+                s1.SaveProductData("productB","300","Female", "Dress", "No details","New", BitmapFactory.decodeResource(getResources(), R.drawable.shirt) );
+                s1.SaveProductData("productC","400","Kid", "t-shirts", "No details","New", BitmapFactory.decodeResource(getResources(), R.drawable.shirt) );
+            }
+
+        if (r<0){Toast.makeText(getActivity(), "I not working", Toast.LENGTH_LONG).show();}
+
+    }
 
 
-    private List<Product> createProductList() {
-        List<Product> productList = new ArrayList<>();
+    private List<Product> createProductList(SQLite s1) {
+        List<Product> productList = s1.SearchTagProducts("New");
+        //BitmapFactory.decodeResource(getResources(), R.drawable.my_image)
 
         // Add your product data here
-        productList.add(new Product("Product 1", "Price 1", R.drawable.shirt));
-        productList.add(new Product("Product 2", "Price 2", R.drawable.shirt));
-        productList.add(new Product("Product 3", "Price 3", R.drawable.shirt));
-        productList.add(new Product("Product 4", "Price 4", R.drawable.shirt));
-        productList.add(new Product("Product 5", "Price 5", R.drawable.shirt));
-        productList.add(new Product("Product 6", "Price 6", R.drawable.shirt));
-        productList.add(new Product("Product 7", "Price 7", R.drawable.shirt));
-        productList.add(new Product("Product 8", "Price 8", R.drawable.shirt));
-        productList.add(new Product("Product 9", "Price 9", R.drawable.shirt));
-        productList.add(new Product("Product 10", "Price 10", R.drawable.shirt));
-        productList.add(new Product("Product 11", "Price 11", R.drawable.shirt));
-        productList.add(new Product("Product 12", "Price 12", R.drawable.shirt));
 
         return productList;
     }

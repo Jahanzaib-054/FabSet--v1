@@ -19,15 +19,22 @@
             android:id="@+id/titleTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:padding="8dp" />
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:textSize="16sp"
+            android:text=""
+            android:textStyle="bold"
+            android:padding="6dp" />
 
         <TextView
             android:id="@+id/priceTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:padding="8dp" />
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:textSize="16sp"
+            android:text="Rs "
+            android:padding="6dp" />
 
     </LinearLayout>
 

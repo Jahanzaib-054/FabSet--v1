@@ -22,6 +22,8 @@ public class AccountFragment extends Fragment {
     private Button Logout;
     private Button Edit_profile;
     private LinearLayout user_layout;
+
+    private Button orders;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class AccountFragment extends Fragment {
         Edit_profile = view.findViewById(R.id.edit_prof);
         TextView greet = view.findViewById(R.id.greeting);
         TextView email = view.findViewById(R.id.email);
+        orders = view.findViewById(R.id.my_orders);
 
         SharedPreferences SP;
         SP = getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
@@ -64,6 +67,12 @@ public class AccountFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),Edit_Profile.class);
                 startActivity(intent);
+            }
+        });
+        orders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Feature Coming Soon !!!", Toast.LENGTH_SHORT).show();
             }
         });
         Logout.setOnClickListener(new View.OnClickListener() {

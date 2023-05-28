@@ -86,7 +86,8 @@
             android:drawablePadding="8dp"
             android:paddingHorizontal="12dp"
             android:layout_marginTop="6dp"
-            android:text="My Orders"/>
+            android:text="My Orders"
+            android:id="@+id/my_orders"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
