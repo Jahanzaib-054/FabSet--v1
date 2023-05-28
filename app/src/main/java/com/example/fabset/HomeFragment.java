@@ -57,15 +57,7 @@ public class HomeFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
-        SharedPreferences SP;
-        SP = getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = SP.edit();
         SQLite s1 = new SQLite(getContext());
-        if (!SP.getBoolean("before",false)){
-            createProducts(s1);
-            editor.putBoolean("before",true);
-        }
-
         List<Product> productList = createProductList(s1);
         productadapter = new ProductAdapter(productList);
         recyclerView.setAdapter(productadapter);
@@ -99,17 +91,6 @@ public class HomeFragment extends Fragment {
         String query = qry.getText().toString();
         // Perform the search operation based on the query
         // ...
-    }
-    private void createProducts(SQLite s1){
-        long r = 0;
-            for (int i=0;i<4;i++){
-                r = s1.SaveProductData("productA","200","Male", "Shirts", "No details","New", BitmapFactory.decodeResource(getResources(), R.drawable.shirt) );
-                s1.SaveProductData("productB","300","Female", "Dresses", "No details","New", BitmapFactory.decodeResource(getResources(), R.drawable.shirt) );
-                s1.SaveProductData("productC","400","Kids", "Sleepwear", "No details","New", BitmapFactory.decodeResource(getResources(), R.drawable.shirt) );
-            }
-
-        if (r<0){Toast.makeText(getActivity(), "I not working", Toast.LENGTH_LONG).show();}
-
     }
 
 

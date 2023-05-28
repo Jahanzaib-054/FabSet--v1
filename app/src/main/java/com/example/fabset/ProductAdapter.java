@@ -13,6 +13,10 @@ import java.util.List;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
 
     private List<Product> productList;
+    private static RecyclerViewClickListener mListener;
+    public void setClickListener(RecyclerViewClickListener listener) {
+        mListener = listener;
+    }
 
     public ProductAdapter(List<Product> productList) {
         this.productList = productList;
@@ -37,7 +41,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         return productList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageView;
         TextView titleTextView;
         TextView priceTextView;
@@ -47,6 +51,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             imageView = itemView.findViewById(R.id.imageView);
             titleTextView = itemView.findViewById(R.id.titleTextView);
             priceTextView = itemView.findViewById(R.id.priceTextView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            if (mListener != null) {
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    mListener.onClick(view, imageView, titleTextView, priceTextView, position);
+                }
+            }
         }
     }
 }

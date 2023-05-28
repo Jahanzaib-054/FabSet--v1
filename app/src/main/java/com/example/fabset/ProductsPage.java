@@ -1,16 +1,22 @@
 package com.example.fabset;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
-public class ProductsPage extends AppCompatActivity {
+public class ProductsPage extends AppCompatActivity implements RecyclerViewClickListener {
     private RecyclerView productrecyclerView;
     private ProductAdapter productadapter;
+    CardView cardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +27,9 @@ public class ProductsPage extends AppCompatActivity {
         productrecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         List<Product> productList = createProductList(s1);
         productadapter = new ProductAdapter(productList);
+        productadapter.setClickListener(this);
         productrecyclerView.setAdapter(productadapter);
+
     }
 
     private List<Product> createProductList(SQLite s1) {
@@ -32,4 +40,15 @@ public class ProductsPage extends AppCompatActivity {
         // Add your product data here
         return productList;
     }
-}
+
+    @Override
+    public void onClick(View view, ImageView imageView, TextView titleTextView, TextView priceTextView, int position) {
+        String text = titleTextView.getText().toString();
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    public interface RecyclerViewClickListener {
+        void onClick(View view, ImageView imageView, TextView titleTextView, TextView priceTextView, int position);
+    }
+
+    }
